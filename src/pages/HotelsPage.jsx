@@ -1,37 +1,42 @@
 import { useSelector } from "react-redux";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
-import HotelCard from "../components/HotelCard";
-import Loader from "../components/Loader";
+import HotelsList from "../components/HotelsList";
 
 const HotelsPage = () => {
   const hotels = useSelector(
-    state => state.hotels.items
+    (state) => state.hotels.items
   );
 
-  const loading = useSelector(
-    state => state.hotels.loading
-  );
+  if (!hotels || hotels.length === 0) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          minHeight: "60vh",
+        }}
+      >
+          <Typography
+             variant="h4"
+             gutterBottom
+                >
+              Sorry 😔
+               </Typography>
 
-  if (loading) {
-    return <Loader />;
+                  <Typography
+                     variant="h6"
+                     color="text.secondary"
+                    >
+                  Hotels not found in that city
+                   </Typography> 
+      </Box>
+    );
   }
 
-  return (
-    <>
-      <h1>Hotels</h1>
-
-      {hotels.length === 0 ? (
-        <p>No hotels found</p>
-      ) : (
-        hotels.map(hotel => (
-          <HotelCard
-            key={hotel.id}
-            hotel={hotel}
-          />
-        ))
-      )}
-    </>
-  );
+  return <HotelsList hotels={hotels} />;
 };
 
 export default HotelsPage;

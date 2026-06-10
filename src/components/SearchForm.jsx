@@ -49,7 +49,7 @@ const SearchForm = () => {
   return (
     <Paper className={styles.paper}>
       <Typography
-        variant="h4"
+        variant="h5"
         gutterBottom
       >
         Find Your Hotel
@@ -101,6 +101,7 @@ const SearchForm = () => {
           >
             <TextField
               select
+              size="small"
               label="Destination"
               name="destination"
               value={values.destination}
@@ -125,6 +126,7 @@ const SearchForm = () => {
 
             <TextField
               type="date"
+              size="small"
               name="checkIn"
               value={values.checkIn}
               onChange={handleChange}
@@ -140,6 +142,7 @@ const SearchForm = () => {
             <TextField
               type="date"
               name="checkOut"
+              size="small"
               value={values.checkOut}
               onChange={handleChange}
               error={!!errors.checkOut}
@@ -149,6 +152,7 @@ const SearchForm = () => {
 
             <TextField
               type="number"
+              size="small"
               label="Guests"
               name="guests"
               value={values.guests}
@@ -165,7 +169,7 @@ const SearchForm = () => {
             <Button
               variant="contained"
               type="submit"
-              size="large"
+              size="medium"
             >
               Search
             </Button>
